@@ -196,5 +196,6 @@
         document.getElementById('andrd_link').setAttribute('href', url);
         document.getElementById('ios_link').setAttribute('href', url);
     }
+}
 })();
 </script>
