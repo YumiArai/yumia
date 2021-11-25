@@ -24,15 +24,16 @@
       onelinkGenerator.setCustomParameter("af_sub_siteid", "af_sub_siteid");
     
 
-      
-      
       const url = onelinkGenerator.generateUrl();
 
-      // onelinkが生成されます
-      if (url) {
-            document.getElementById('andrd_link').setAttribute('href', url);   // 生成したOneLinkカスタムリンクを LP内の <a>タグのどこに埋めるかを指示
-            document.getElementById('ios_link').setAttribute('href', url);   // 生成したOneLinkカスタムリンクを LP内の <a>タグのどこに埋めるかを指示
-      }
+      // 送信URL（OneLinkカスタムリンク）が生成されました
+        if (url) {
+          document.querySelectorAll("#andrd_link, #ios_link").forEach(function(e) {
+            e.setAttribute('href', url);
+            e.onclick = function() {gtag_report_conversion(url);};
+          });
+        }
+      // 生成された送信URLを、LP内のどのaタグに埋めるかを指示
 
     };
   </script>
