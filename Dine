@@ -1,0 +1,38 @@
+<script type="text/javascript">
+    window.onload = function () {
+      document.getElementById('input_url').innerHTML = window.location.href;
+      const onelinkGenerator =  new window.AF.OneLinkUrlGenerator(
+        {oneLinkURL: "https://dine.onelink.me/1089573873",  // Dine - Main OneLinkテンプレートに置き換え済み
+         pidKeysList: ['pid', 'utm_source'], 　　  // 受信URLに含まれる pid, utm_source パラメを送信URLの 'pid=' として引き渡す
+         pidStaticValue: 'OfficialWebsite', 　　  // 受信URLに pid, utm_source パラメがない場合、送信URLの 'pid='の固定値として引き渡す
+         campaignKeysList: ['c', 'utm_campaign'], 　　  // 受信URLに含まれる c, utm_campaign パラメを送信URLの c= として引き渡す
+         campaignStaticValue: 'LP_TOP' 　　 　 // 受信URLに c, utm_campaign パラメがない場合、送信URLの 'c='の固定値として引き渡す
+         gclIdParam: 'af_sub4' 　　 　 // 受信URLに'gclid='パラメがある場合、'af_sub4=' として引き渡す
+      });
+      
+      onelinkGenerator.setAdset("af_adset"); 　　  // 受信URLに'af_adset'が含まれる際にそのまま'af_adset'として引き渡す、ない場合は無視
+      onelinkGenerator.setAd("af_ad"); 　　  　　　 // 受信URLに'af_ad'が含まれる際にそのまま'af_ad'として引き渡す、ない場合は無視
+      onelinkGenerator.setCustomParameter("af_prt", "af_prt");  // 受信URLに'af_prt'が含まれる際にそのまま'af_prt'として引き渡す、ない場合は無視
+      onelinkGenerator.setCustomParameter("af_dp", "af_dp");    // 受信URLに'af_dp'が含まれる際にそのまま'af_dp'として引き渡す、ない場合は無視
+      onelinkGenerator.setCustomParameter("is_retargeting", "is_retargeting");    // 受信URLに'is_retargeting'が含まれる際にそのまま'is_retargeting'として引き渡す、ない場合は無視
+      onelinkGenerator.setCustomParameter("af_siteid", "af_siteid");
+      onelinkGenerator.setCustomParameter("af_c_id", "af_c_id");
+      onelinkGenerator.setCustomParameter("af_ad_id", "af_ad_id");
+      onelinkGenerator.setCustomParameter("idfa", "idfa");
+      onelinkGenerator.setCustomParameter("advertising_id", "advertising_id");
+      onelinkGenerator.setCustomParameter("xid", "xid");
+      onelinkGenerator.setCustomParameter("af_sub_siteid", "af_sub_siteid");
+    
+
+      
+      
+      const url = onelinkGenerator.generateUrl();
+
+      // onelinkが生成されます
+      if (url) {
+            document.getElementById('andrd_link').setAttribute('href', url);   // 生成したOneLinkカスタムリンクを LP内の <a>タグのどこに埋めるかを指示
+            document.getElementById('ios_link').setAttribute('href', url);   // 生成したOneLinkカスタムリンクを LP内の <a>タグのどこに埋めるかを指示
+      }
+
+    };
+  </script>
