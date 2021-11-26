@@ -23,7 +23,7 @@
       onelinkGenerator.setCustomParameter("xid", "xid");
       onelinkGenerator.setCustomParameter("af_sub_siteid", "af_sub_siteid");
       onelinkGenerator.setCustomParameter("af_channel", "af_channel");
-      onelinkGenerator.setCustomParameter("af_dp", "af_dp");
+      onelinkGenerator.setCustomParameter("af_web_dp", "af_web_dp");
       
     
 
