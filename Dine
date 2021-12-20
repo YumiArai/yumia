@@ -24,6 +24,7 @@
       onelinkGenerator.setCustomParameter("af_sub_siteid", "af_sub_siteid");
       onelinkGenerator.setCustomParameter("af_channel", "af_channel");
       onelinkGenerator.setCustomParameter("af_web_dp", "af_web_dp");
+      onelinkGenerator.setCustomParameter("imobile_rid", "imobile_rid");
       
     
 
