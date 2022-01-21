@@ -223,7 +223,6 @@
          }
        });
      }
-
      var finalParams = stringifyParameters(afParams);
      var finalURL = oneLinkURL + finalParams.replace("&", "?");
      console.debug("Generated OneLink URL", finalURL);
