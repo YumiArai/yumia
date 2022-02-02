@@ -1,0 +1,52 @@
+引き渡す用指示されたパラメータリスト：
+メディアソース名：pid / utm_source
+キャンペーン名：c / utm_campaign
+広告セット名：af_adset
+広告名：af_ad
+チャネル名：af_channel
+代理店パラメータ：af_prt
+ウェブ
+
+// ここから下の部分を実装してください。
+
+<script type="text/javascript">
+  window.onload = function () {
+
+    // SS V2スクリプトを初期化
+    var oneLinkURL = "https://go.onelink.me/eDah";  // 使用するOneLinkテンプレートと置き換えます
+    var mediaSource = { keys: ["pid"], defaultValue: "PJ_LP" };     // メディアソース名として使用したいパラメータを指定し、そのパラメータがが受信URLにない場合、'PJ_LP'をデフォルト値として使用
+    var campaign = { keys: ["c"], defaultValue: "LP_Organic" };    // キャンペーン名として使用したいパラメータを指定し、そのパラメータがが受信URLにない場合、'LP_Organic'をデフォルト値として使用
+    var adSet = { keys: ["af_adset"] };    // 受信URLに広告セットパラメ (af_adset=) が含まれる場合、そのまま送信URLにaf_adsetとして引き渡します。ない場合は無視
+    var ad = { keys: ["af_ad"] };    // 受信URLに広告セットパラメ (af_adset=) が含まれる場合、そのまま送信URLにaf_adsetとして引き渡します。ない場合は無視
+    var channel = { keys: ["af_channel"] };
+    var custom1 = { paramKey: "af_prt", keys: ["af_prt"] };
+    var custom2 = { paramKey: "is_retargeting", keys: ["is_retargeting"] };
+    var custom3 = { paramKey: "af_prt", keys: ["af_prt"] };
+    var custom4 = { paramKey: "af_web_dp", keys: ["af_web_dp"] };
+
+    //上記パラメータを基に最終Onelink URLを作成
+    var result = window.AF_SMART_SCRIPT.generateOneLinkURL({
+      oneLinkURL,
+      afParameters: {
+        mediaSource: mediaSource,
+        adSet: adSet,
+        ad: ad,
+        channel: channel,
+        campaign: campaign,
+        afCustom: [
+          custom1,
+          custom2,
+          custom3,          
+          custom4,
+          custom5,
+]
+      }
+    })
+    // 作成されたOneLink URLを、ページ内のどのaタグと置き換えるかを指示（ID, クラスなど）
+    if (result && result.clickURL) {
+      document.querySelectorAll(".final_url").forEach(function (e) {  
+        e.setAttribute('href', result.clickURL);
+      });
+    };
+  }
+</script>
