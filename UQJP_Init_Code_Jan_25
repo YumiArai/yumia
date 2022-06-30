@@ -4,8 +4,8 @@
 
     // SS V2スクリプトを初期化
     var oneLinkURL = "https://uniqlo.onelink.me/1199028043";  // 使用するOneLinkテンプレートと置き換え
-    var mediaSource = { keys: ["pid"], defaultValue: "site" };     // メディアソース名として使用したいパラメータを指定し、そのパラメータがが受信URLにない場合、'site'をデフォルト値として使用
-    var campaign = { keys: ["c"], defaultValue: "apppromo_feature_page" };    // キャンペーン名として使用したいパラメータを指定し、そのパラメータがが受信URLにない場合、'apppromo_feature_page'をデフォルト値として使用
+    var mediaSource = { keys: ["pid", "utm_source"], defaultValue: "site" };     // メディアソース名として使用したいパラメータを指定し、そのパラメータがが受信URLにない場合、'site'をデフォルト値として使用
+    var campaign = { keys: ["c", "utm_campaign"], defaultValue: "apppromo_feature_page" };    // キャンペーン名として使用したいパラメータを指定し、そのパラメータがが受信URLにない場合、'apppromo_feature_page'をデフォルト値として使用
     var adSet = { keys: ["af_adset"] };    // 受信URLに広告セットパラメ (af_adset=) が含まれる場合、そのまま送信URLにaf_adsetとして引き渡します。ない場合は無視
     var ad = { keys: ["af_ad"] };    // 受信URLに広告セットパラメ (af_adset=) が含まれる場合、そのまま送信URLにaf_adsetとして引き渡します。ない場合は無視
     var channel = { keys: ["af_channel"] };
@@ -16,7 +16,7 @@
     var custom5 = { paramKey: "af_dp", keys: ["af_dp"] };
     var custom6 = { paramKey: "af_qr", keys: ["af_qr"] };
 
-    //Onelink URL is generated
+    // Onelink URL is generated
     var result = window.AF_SMART_SCRIPT.generateOneLinkURL({
       oneLinkURL,
       afParameters: {
@@ -35,9 +35,9 @@
 ]
       }
     })
-    // onelink is generated
+    // which a tag (URL) to replace in the LP
     if (result && result.clickURL) {
-    document.querySelectorAll("#final_url").forEach(function (e) {  // Yumi Memo: document = webpage
+    document.querySelectorAll("#final_url").forEach(function (e) {  // ページ内のaタグのIDを検索＆置換
         e.setAttribute('href', result.clickURL);
       });
     };
