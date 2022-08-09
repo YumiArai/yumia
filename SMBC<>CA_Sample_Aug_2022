@@ -2,16 +2,16 @@
   window.onload = function () {
 
     // スクリプトを初期化
-    var oneLinkURL = "https://app.onelink.me/AbCd";  // 施策に使用するOneLinkテンプレートと置き換えてください
-    var mediaSource = { keys: ["pid", "utm_source"], defaultValue: "LP_Organic" };     // メディアソース名として使用したいパラメータ keys で指定し、そのパラメータがが受信URLにない場合は 'LP_Orgainc' をデフォルト値とします
-    var campaign = { keys: ["c", "utm_campaign"], defaultValue: "Default_Campaign_Name" };    // キャンペーン名として使用したいパラメータを keys で指定し、そのパラメータが受信URLにない場合は 'Default_Campaign_Name' をデフォルト値とします
+    var oneLinkURL = "https://family-networkservice.onelink.me/UEwu";  // 施策に使用するOneLinkテンプレート
+    var mediaSource = { keys: ["pid", "utm_source"], defaultValue: "LP_Organic" }; // 受信URLにpid, utm_sourceが存在する場合にはメディアソース名として、ない場合にはLP_Orgaincをデフォルト値として使用します
+    var campaign = { keys: ["c", "utm_campaign"]};    // 受信URLにc, utm_campaignが存在する場合にはキャンペーン名として使用、ない場合には無視
     var adSet = { keys: ["af_adset", "utm_content"] };    // 受信URLに広告セットパラメ (af_adset or utm_content) が含まれる場合、そのまま送信URLにaf_adsetとして引き渡します。ない場合は無視
     var ad = { keys: ["af_ad"] };    // 受信URLに広告セットパラメ (af_adset=) が含まれる場合、そのまま送信URLにaf_adsetとして引き渡します。ない場合は無視
-    var googleClickIdKey = "af_sub4";
-    var custom1 = { paramKey: "af_prt", keys: ["af_prt"] };  // 代理店識別子用のパラメータ。もしCAさまへ施策をアトリビューションしたい場合は流入元URLに af_prt=cyber
-    var custom2 = { paramKey: "is_retargeting", keys: ["is_retargeting"]}; // 既存ユーザーのアプリ復帰を計測したい場合にはご相談ください
-    var custom3 = { paramKey: "af_siteid", keys: ["af_siteid"] };
-    var custom4 = { paramKey: "af_dp", keys: ["af_dp"] };
+    var googleClickIdKey = "af_sub4"; // Google Click ID用のパラメータ：受信URLにない場合は無視
+    var custom1 = { paramKey: "af_prt", keys: ["af_prt"] };  // 代理店識別子用のパラメータ：受信URLにない場合は無視
+    var custom2 = { paramKey: "is_retargeting", keys: ["is_retargeting"]}; // リターゲティング計測用パラメータ：受信URLにない場合は無視
+    var custom3 = { paramKey: "af_siteid", keys: ["af_siteid"] }; // サイトID用パラメータ：受信URLにない場合は無視
+    var custom4 = { paramKey: "af_dp", keys: ["af_dp"] }; // URIスキーム用パラメータ：受信URLにない場合は無視
 
 //　上で定義されたパラメータマッチングリストを基にOneLinkを生成
     var result = window.AF_SMART_SCRIPT.generateOneLinkURL({
