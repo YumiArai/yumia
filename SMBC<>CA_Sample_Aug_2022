@@ -33,5 +33,5 @@
     if (result && result.clickURL) {
       document.querySelectorAll("#final_url").forEach(function (e) {  // 生成された最終URLをLP内の aタグのどのリンクと置き換えるのか、指示してください。       
         e.setAttribute('href', result.clickURL);      });    };  }
-        
+         window.AF_SMART_SCRIPT.displayQrCode("my_qr_code_div_id");
 </script>
